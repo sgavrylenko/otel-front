@@ -1,5 +1,5 @@
 # Stage 1: Build frontend
-FROM node:24-alpine@sha256:01743339035a5c3c11a373cd7c83aeab6ed1457b55da6a69e014a95ac4e4700b AS frontend-builder
+FROM node:24-alpine@sha256:d1b3b4da11eefd5941e7f0b9cf17783fc99d9c6fc34884a665f40a06dbdfc94f AS frontend-builder
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
 RUN npm ci
@@ -7,7 +7,7 @@ COPY frontend/ ./
 RUN npm run build
 
 # Stage 2: Build Go binary
-FROM golang:1.26-bookworm@sha256:8e8aa801e8417ef0b5c42b504dd34db3db911bb73dba933bd8bde75ed815fdbb AS go-builder
+FROM golang:1.26-bookworm@sha256:982a7587fad0c921eafae54382194e45b5bd07ce3083f91271f04fc761915dcf AS go-builder
 WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
